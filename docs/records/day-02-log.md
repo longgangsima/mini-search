@@ -42,3 +42,4 @@
 
 - `errors` / `panic` / `defer` 场景备忘：`docs/week-1/errors-panic-defer.md`
 - Week 1 索引：`docs/week-1/README.md`
+- **延续澄清（早间讨论，属 Day 1 架构主题）**：**`main`** 作为 **composition root** 组装依赖；**handler**（`http.Handler`，角色接近别的栈里的 **controller**）只做 HTTP；**service** 做校验与领域逻辑；谁调 **`ServeHTTP`**、**DI**、**`NewSearchHandler` 为何同包** 等，已收进 **`docs/week-1/architecture-web-handler-ioc.md`**（原 `day1.md` 文末长 Summary 与此合并维护，避免两处各写一套）。

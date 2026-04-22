@@ -14,11 +14,13 @@ type SearchHandler struct {
 }
 
 // NewSearchHandler 构造处理器并注入依赖；main 里用这一行完成「接线」。
+// 1. 接线：h.svc 存下了 svc 的地址
 func NewSearchHandler(svc *service.SearchService) *SearchHandler {
 	return &SearchHandler{svc: svc}
 }
 
 // ServeHTTP 每来一个 /search 请求调用一次；由 ServeMux 自动调度。
+// 2. 使用：当请求触发此方法时，h 已经带有了初始化好的 svc
 func (h *SearchHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// 取出请求级 context；后面接超时/取消时从这里往下传（Day 7 起会用上）。
 	ctx := r.Context()
@@ -28,6 +30,8 @@ func (h *SearchHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 调用业务层；错误在这里映射成 HTTP（当前只简单 500）。
+	// 这里的 h.svc 就是 main 传进来的那个零件： Search from service
+	
 	resp, err := h.svc.Search(ctx, req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

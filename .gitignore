@@ -1,0 +1,3 @@
+docs/*.local.md
+docs/**/*.local.md
+docs/worklog/

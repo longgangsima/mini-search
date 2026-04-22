@@ -1,13 +1,10 @@
 package client
+
 import "context"
 
-// UpstreamClient 是下游服务的通接口
-// 用通俗的话说，这段代码是在**“定规矩”**。
-// inteface -> 接口: qustions.md 有解释
-// 用这种方式 属于decouple.
-// UpstreamClient -> is a contract
-// Day 1 先定义这个contract，Day 4 会有真实现
-
-type UpstreamClient interface{
-	func(ctx context.Context, query string)(string, error)
+// UpstreamClient 定义「下游怎么被调用」的契约；service 只依赖接口，不依赖具体实现（解耦）。
+// Day 1 仅占位；Day 4 起会有 Catalog/Inventory/Pricing 等具体类型实现该接口。
+type UpstreamClient interface {
+	// Fetch 表示一次上游拉取；ctx 用于超时/取消，query 为搜索词。
+	Fetch(ctx context.Context, query string) (string, error)
 }

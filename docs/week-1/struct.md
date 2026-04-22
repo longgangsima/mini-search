@@ -1,4 +1,6 @@
-#Struct
+# Struct
+
+> 与 [memory-pointers-escape-and-map.md](memory-pointers-escape-and-map.md) 有重叠：本文件保留 **例题与 struct 细节**；总览与术语表以 memory 文件为辅。
 
 ## Go 语言中 **Struct**（结构体）的定义、初始化以及如何通过 **Pointer**（指针）来操作它们。
 

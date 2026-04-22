@@ -1,5 +1,7 @@
 # Maps
 
+> 与 [memory-pointers-escape-and-map.md](memory-pointers-escape-and-map.md) §6 同一主题：本文件为 **详细版**；总览只看 memory 文件即可。
+
 ## `value, ok := m["key"]`
 
 这段话描述的是 Go 语言中处理 **Map** 时一个非常经典且重要的模式，通常被称为 **"Comma ok" idiom**。

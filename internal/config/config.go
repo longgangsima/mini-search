@@ -1,32 +1,30 @@
 package config
 
-import(
+import (
 	"os"
 	"time"
 )
 
+// Config 保存进程级配置；main 启动时读一次，避免端口/超时写死在各处。
 type Config struct {
+	// Port 传给 ListenAndServe，例如 ":8080"；可用环境变量 PORT 覆盖。
 	Port string
+	// UpstreamTimeout 留给后面调下游时用（Day 1 可先不用）。
 	UpstreamTimeout time.Duration
 }
 
-func Load() Config{
+// Load 组装默认配置并从环境变量覆盖；集中入口，方便以后加字段。
+func Load() Config {
 	return Config{
-		Port: getEnv("PORT", ":8080"), // if no env return :8080
-		UpstreamTimeout: 500* time.Millisecond,
+		Port:            getEnv("PORT", ":8080"),
+		UpstreamTimeout: 500 * time.Millisecond,
 	}
 }
 
+// getEnv 读环境变量；空则用 fallback，避免调用方重复写 if v != "" 逻辑。
 func getEnv(key, fallback string) string {
-	if v:= os.Getenv(key); v!=""{
+	if v := os.Getenv(key); v != "" {
 		return v
 	}
 	return fallback
 }
-/**
-v := os.Getenv(key)：尝试从操作系统中获取名为 key 的环境(环境变量.MD)。这里使用了短变量声明。
-if 初始化语句：注意这里的 v := ... 是写在 if 关键字后面的。
-这在 Go 中很常见，意思是：先执行声明并赋值，然后紧接着判断 v != ""。
-作用域限制：变量 v 的生命周期仅限于这个 if 代码块内部。
-
-*/

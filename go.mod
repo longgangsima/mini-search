@@ -1,3 +1,3 @@
-module github.com/jiulonglin/mini-search
+module github.com/longgangsima/mini-search
 
 go 1.22

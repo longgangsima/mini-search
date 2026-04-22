@@ -50,10 +50,9 @@ Expected response:
 - `cmd/server`: HTTP server entrypoint
 - `cmd/consumer`: Kafka consumer entrypoint (stub for Week 3)
 - `internal/handler`: HTTP handlers
-- `internal/service`: business logic
+- `internal/service`: business logic（Phase 1 Day 2 起含 `errors.go`：`ValidationError` 等）
 - `internal/client`: downstream client mocks
 - `internal/model`: request and response models
-- `internal/errors`: custom error definitions
 - `test`: integration tests
 
 ## Suggested Workflow

@@ -17,6 +17,8 @@
 
 资源：Go by Example — Errors, Panic, Defer；需要时查 `pkg.go.dev/strconv`。
 
+**备忘**：[errors-panic-defer.md](errors-panic-defer.md)（`Is` / `As`、`panic`、`defer`）
+
 ---
 
 ## 主项目任务（约 120 min）

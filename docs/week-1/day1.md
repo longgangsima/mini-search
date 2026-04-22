@@ -130,6 +130,10 @@ curl -s "http://127.0.0.1:8080/search?q=milk"
 
 Express 的 `app.get('/health')` 与 Go 里注册 `Handler` 到 `ServeMux` 一样，都是「路由 → 处理函数 → 写 response」。
 
+## 延伸阅读（架构总览）
+
+谁调 `ServeHTTP`、为什么要 **DI**、**composition root**、长 `import` 路径：见 [architecture-web-handler-ioc.md](architecture-web-handler-ioc.md)。
+
 ## Summary:
 
 ### Q: NewSearchHandler 这玩意为什么要写在handler 里而不是在main 里写？我感觉他跟handler 没半毛钱关系

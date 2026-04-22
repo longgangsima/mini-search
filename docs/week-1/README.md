@@ -7,6 +7,7 @@
 | 文件 | 用途 | 备注 |
 |------|------|------|
 | [day1.md](day1.md) | **Day 1 执行手册**（v23 长日）+ 当天延伸问答 | 文末「Summary」偏工程叙事；与 `questions.md` 有主题交叉，**不删**，用本 README 区分入口即可。 |
+| [architecture-web-handler-ioc.md](architecture-web-handler-ioc.md) | **Day 1 补充**：Handler vs Service、谁调 `ServeHTTP`、DI、**composition root**、长 import 路径 | 与 `day1` / `questions` 互补的「总览 + 词汇卡」；不重复贴代码。 |
 | [struct.md](struct.md) | Struct / pointer / escape 的 **专题深挖**（Go by Example 路线） | 与 `memory-pointers-escape-and-map.md` 有重叠：**struct 细节以本文件为准**，总览表看 memory 文件。 |
 | [slice.md](slice.md) | Slice 专题 | 独立。 |
 | [maps.md](maps.md) | Map 与 **comma ok** 专题 | 与 `memory-pointers-escape-and-map.md` §6 同主题：**详细版以本文件为准**。 |

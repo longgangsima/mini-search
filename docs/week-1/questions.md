@@ -20,6 +20,10 @@
 
 详见 [memory-pointers-escape-and-map.md](memory-pointers-escape-and-map.md)（详细 map 仍以 `maps.md` 为准）。
 
+### Handler / Service、谁调 ServeHTTP、DI
+
+详见 [architecture-web-handler-ioc.md](architecture-web-handler-ioc.md)。
+
 ## Questions
 
 ### Q: 什么是 gRPC？ (The Communication Protocol)
@@ -81,7 +85,6 @@ func (s *SearchService)  Search  (ctx context.Context, ...) (SearchResponse, err
 #### (1) Receiver（接收者）：`(s *SearchService)`
 
 - **什么是 Receiver?**：它就像是给这个函数找了个“亲爹”。它告诉编译器：这个 `Search` 方法不是路边随便谁都能用的，它是**专属于** `SearchService` 这个结构体的。
-
 - **指针符号 `*` 的意义**：记得你之前问为什么返回 `&`（地址）吗？这里用 `*` 代表 **Pointer Receiver**。
   - **工程意义**：这意味着当你调用 `Search` 时，你是在操作内存中那个**真实的、唯一的** `SearchService` 对象，而不是它的一个临时副本。这保证了 **Data Consistency**（数据一致性）。
 

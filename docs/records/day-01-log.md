@@ -34,4 +34,3 @@ Go 导出符号首字母大写；环境变量读取用标准库 `os.Getenv`。
 `docs/week-1/memory-pointers-escape-and-map.md`  
 - Week 1 全部笔记索引与去重说明：`docs/week-1/README.md`  
 - 以后同类「概念长文」默认放 `docs/week-1/`，`records` 里只留链接 + 一句话，避免 records 变成第二份讲义。
-

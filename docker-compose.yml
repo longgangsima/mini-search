@@ -1,0 +1,6 @@
+version: "3.9"
+
+services:
+  mini-search:
+    image: alpine:3.20
+    command: ["sh", "-c", "echo mini-search compose stub; sleep 3600"]

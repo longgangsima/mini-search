@@ -129,4 +129,3 @@
 - 项目 push 到 GitHub（private 也行）  
 - 花约 30 分钟看 Go Tour 的 concurrency 部分预习  
 - 若轻松：用 Go 重写一个以前用 JS/TS 写的小脚本（如读 CSV 统计）
-

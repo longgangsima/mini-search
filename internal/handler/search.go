@@ -30,8 +30,7 @@ func (h *SearchHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 调用业务层；错误在这里映射成 HTTP（当前只简单 500）。
-	// 这里的 h.svc 就是 main 传进来的那个零件： Search from service
-	
+	// 这里的 h.svc 就是 main 传进来的那个零件：Search from service
 	resp, err := h.svc.Search(ctx, req)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

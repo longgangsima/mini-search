@@ -1,7 +1,7 @@
 # Go 后端架构复盘：Handler / Service、「消失的 call」、DI（Day 1 补充）
 
 > 与 [day1.md](day1.md) 第一天的项目实践配套：从「第一直觉」对照 **industry standard** 的工程说法。  
-> 和 [questions.md](questions.md) 里关于 `NewSearchHandler`、**composition root** 的问答**互补**；本文件偏「总览 + 一张词汇卡」。
+> **Day1 文末原「Summary」长问答已并入本文 §三～§五**，与 [questions.md](questions.md) 里索引链相互引用；本文件为 Handler / Service / `main` / DI 的**单一详细真源**。
 
 ---
 
@@ -40,12 +40,29 @@
 
 - **Hidden dependency（坏味道）**：在 handler 里偷偷 new，**调用方不知道依赖图**，测试也难塞 **mock**。
 - **做法**：`main`（或一个专门的 `cmd` 层）**唯一负责** new 出 `Service`，再 `NewSearchHandler(svc)` 塞进去。测试里可以 `NewSearchHandler(fakeSvc)`，不必起真数据库。
+- **`main` 为何仍 `import service`**：组合根要**调用** `service.NewSearchService()` 才能注入，import 的是「创建权」，不是把业务逻辑塞进 `main`；与 **separation of concerns** 不矛盾。
+- **工厂仍藏「装配工艺」**：以后若在 `NewSearchHandler` 里加缓存、埋点等，`main` 仍可只传 `svc`，不必跟着改——**信息隐藏**在组件包内完成。
+- **进阶**：`NewSearchHandler` 可改为接收 **接口类型**（如 `Searcher`），由 `main` 注入具体 `*SearchService`；**组合根依然要 import 具体包**才能 `New` 出实现并塞进去。
 
 **术语**：`main` 常被称为 **composition root**——**总装车间**；依赖从这一层流进各包，**透明、可测**。
 
 ---
 
-## 四、import 为什么写一整条 module 路径、而不是 `../../`？
+## 四、`NewSearchHandler` 为什么写在 `handler` 包里？（和「没半毛钱关系」相反）
+
+**你的疑问**：构造函数看起来「不像 HTTP」，为什么要和 `handler` 放一起？
+
+**工程说法**：
+
+- **Constructor 与类型同包**：`NewSearchHandler` 是 `SearchHandler` 的**工厂函数**；和 struct 放同包是 Go 常见习惯（`NewT` 与 `T` 同目录）。
+- **小写字段 `svc`**：包外（含 `main`）**不能直接赋值**未导出字段；只有 `handler` 包内的 `NewSearchHandler` 能完成「把依赖塞进 struct」这一步，这就是 **encapsulation / information hiding**。
+- **对比写在 `main` 里组装**：若把「如何填好 `SearchHandler` 内部字段」都写在 `main`，`main` 会知道过多细节；把工厂留在 `handler`，`main` 只做 **一行** `NewSearchHandler(svc)`。
+
+**和 §三的关系**：§三讲「谁 new、谁注入」；本节讲「**在哪 new 的构造函数**」——工厂在组件包，`main` 只调用工厂。
+
+---
+
+## 五、import 为什么写一整条 module 路径、而不是 `../../`？
 
 **你的疑问**：明明在隔壁目录，为什么不用相对路径跳文件夹？
 

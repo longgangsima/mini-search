@@ -6,8 +6,10 @@
 
 | 文件 | 用途 | 备注 |
 |------|------|------|
-| [day1.md](day1.md) | **Day 1 执行手册**（v23 长日）+ 当天延伸问答 | 文末「Summary」偏工程叙事；与 `questions.md` 有主题交叉，**不删**，用本 README 区分入口即可。 |
-| [architecture-web-handler-ioc.md](architecture-web-handler-ioc.md) | **Day 1 补充**：Handler vs Service、谁调 `ServeHTTP`、DI、**composition root**、长 import 路径 | 与 `day1` / `questions` 互补的「总览 + 词汇卡」；不重复贴代码。 |
+| [day1.md](day1.md) | **Day 1 执行手册**（v23 长日）+ 当天延伸问答 | 原文末长 Summary 已并入 `architecture-web-handler-ioc.md` §三～§五；`day1` 文末仅保留跳转，避免双份维护。 |
+| [day2.md](day2.md) | **Day 2（v23）**：Error + Validation、`errors.As`、JSON 错误体、`defer` 日志 | 与 `handbook-v2` Phase 1 Day 2 对齐；代码以仓库 `internal/` 为准。 |
+| [day02-legacy-20day-struct-json-query.md](day02-legacy-20day-struct-json-query.md) | 旧 20 天线的「Struct + JSON + Query」Day 2 文字备份 | 非主日程；struct 深挖仍看 `struct.md`。 |
+| [architecture-web-handler-ioc.md](architecture-web-handler-ioc.md) | **Day 1 补充**：Handler vs Service、谁调 `ServeHTTP`、DI、**composition root**、`NewSearchHandler` 同包、长 import 路径 | **架构叙事真源**（含原 `day1` Summary 合并内容）；不重复贴业务代码。 |
 | [struct.md](struct.md) | Struct / pointer / escape 的 **专题深挖**（Go by Example 路线） | 与 `memory-pointers-escape-and-map.md` 有重叠：**struct 细节以本文件为准**，总览表看 memory 文件。 |
 | [slice.md](slice.md) | Slice 专题 | 独立。 |
 | [maps.md](maps.md) | Map 与 **comma ok** 专题 | 与 `memory-pointers-escape-and-map.md` §6 同主题：**详细版以本文件为准**。 |

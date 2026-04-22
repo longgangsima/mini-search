@@ -36,16 +36,19 @@
 
 ---
 
-## Day 2 · Struct + JSON + Query Params（2–3h）
+## Day 2
 
-### 学什么
+> **主跟 v23**：执行稿与代码任务以 `docs/week-1/day2.md` 为准（**Error + Validation**）。  
+> 下面保留的是旧「20 天 / 3 周」**Struct + JSON + Query** 原文，便于对照；同一主题深挖见 `docs/week-1/struct.md`。
+
+### 学什么（旧 20 天线原文）
 
 - Go by Example：Structs, Methods, JSON  
 - 重点：`json:"name"` struct tag  
 - `encoding/json`：Marshal / Unmarshal  
 - `net/url` 解析 query params
 
-### 项目任务
+### 项目任务（旧 20 天线原文）
 
 - 定义 `SearchRequest`：`Q`（query）, `Store`, `Page`  
 - 定义 `SearchResponse`：`Results []Product`, `Total int`  
@@ -126,3 +129,4 @@
 - 项目 push 到 GitHub（private 也行）  
 - 花约 30 分钟看 Go Tour 的 concurrency 部分预习  
 - 若轻松：用 Go 重写一个以前用 JS/TS 写的小脚本（如读 CSV 统计）
+

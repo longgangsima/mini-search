@@ -20,15 +20,19 @@ type SearchService struct {
 	// Day 4 会加 clients 字段
 }
 
-// NewSearchService 返回指针，让方法接收者共享同一份实例状态（见 questions.md）。
+// 为什么要 return 回来一个 service 的地址呢？在 questions.md 有解释。
+// * + & 是标准：通过 * 要 return 地址，然后 & return 给你地址。
+//
+// NewSearchService 返回指针，让方法接收者共享同一份实例状态。
 func NewSearchService() *SearchService {
 	return &SearchService{}
 }
 
-// Search 核心业务入口；ctx 用于后续超时/取消，req 来自 handler 解析结果。
+// 详细在 questions.md 有解释。
+// (1) Receiver  (2) Name  (3) Input Parameters  (4) Return Values
 func (s *SearchService) Search(ctx context.Context, req SearchRequest) (SearchResponse, error) {
 	_ = ctx // Day 1 占位；接下游后在这里尊重 ctx 取消
-	// Day 1：不查真实数据源，只拼接 query，验证整条调用链打通。
+	// Day 1：先返回 mock 数据；return 的是 req.Query 拼出来的串，不是真实数据源。
 	return SearchResponse{
 		Results: []string{"result for " + req.Query},
 		Total:   1,

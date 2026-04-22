@@ -81,14 +81,6 @@ dog := struct {
 
 你觉得这种直接用 `.` 就能同时操作 **Value** 和 **Pointer** 的设计，是不是比 C 语言那种区分 `.` 和 `->` 的做法省心多了？
 
-##Questions:
+## 常见问题（与 memory 合并）
 
-###An & prefix yields a pointer to the struct. 这样写的作用是什么？跟别的区别是什么？
-
-###Escape Analysis: 这里的逻辑非常有趣——在 C++ 中，返回局部变量的地址是危险的；但在 Go 中，Compiler 会执行 Escape Analysis（逃逸分析），自动把 p 分配到 Heap（堆）上，确保函数结束后它依然有效。没太懂你的意思。
-
-###sp := &s 这是什么？
-
-###Struct Value 还是 Struct Pointer。这2者是什么？
-
-###Pointer (*)存储 Struct Instance 在内存中的地址。 这是啥意思啊？
+下列问题在 [memory-pointers-escape-and-map.md](memory-pointers-escape-and-map.md) 里有一份统一回答（`&` 与 `sp := &s`、value vs pointer、逃逸与 `return &local`、地址「存哪」），**本文件只保留 struct 示例与术语表**，避免两处维护两套答案。

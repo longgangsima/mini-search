@@ -53,21 +53,12 @@
 
 **Interface** 是为了让你的代码**“可替换”**；而 gRPC 是为了让你的数据传输**“极速且标准”**。
 
-### Q:  为什么要return 回来一个service 的地址呢？`*SearchService`)？
+### Q: 为什么要 return 一个 `*SearchService`（地址）？
 
-在 Go 中，当你传递一个变量时，默认是 **Pass-by-value（值传递/副本传递）**。如果你返回的是对象本身，Go 会在内存中把整个对象复制一遍。
+**语法与内存图**（`&`、拷贝多大、`return &local` 与逃逸）见 [memory-pointers-escape-and-map.md](memory-pointers-escape-and-map.md)；[struct.md](struct.md) 侧重 struct 示例。这里只收 **工程角度**：
 
-#### A. Performance & Memory Efficiency（性能与内存效率）
-
-- **The Problem**: 如果你的 `SearchService` 结构体很大（比如里面包含了很多配置信息或大型缓存），每次复制都会消耗大量的 **CPU** 和 **Memory Resource**。
-- **The Solution**: 返回 `&`（地址），本质上只是传递了一个 **64-bit Address**（一个极小的数字）。无论原来的结构体有多大，传地址永远是极速的。
-
-#### B. Singleton Pattern（单例模式）与 Shared State（状态共享）
-
-这是最重要的工程原因。`SearchService` 通常是一个 **Service Object（服务对象）**，它内部可能持有数据库连接池或配置。
-
-- **Shared State**: 如果你返回的是指针（地址），那么程序的其他部分拿到的是指向 **同一个内存空间** 的钥匙。这意味着大家都在操作同一个实例。
-- **Data Consistency（数据一致性）**: 如果返回的是值（副本），每个模块拿到的都是一份“快照”。你在模块 A 里修改了 Service 的状态，模块 B 根本看不见。
+- **Pass-by-value**：若返回「整个 struct 值」，会按字段复制一份；体大时 **CPU / 内存** 不划算；返回指针常只是传一个 **word 大小的地址**。
+- **Shared state**：连接池、配置等希望全局 **同一实例**；指针让各层拿到的是 **同一把钥匙**；若返回值副本，A 改状态 B 看不见（**数据一致性**）。
 
 ### Q: func (s *SearchService) Search(ctx context.Context, req SearchRequest)(SearchResponse, error) 是什么意思？
 
@@ -94,7 +85,7 @@ func (s *SearchService)  Search  (ctx context.Context, ...) (SearchResponse, err
 
 #### (3) Input Parameters（输入参数）
 
-- `**ctx context.Context`**：这是 Go 的 **Standard Practice**（标准实践）。
+- `**ctx context.Context`**：Go 的 **Standard Practice**（标准实践）。
   - **术语：Context Propagation**（上下文传播）。
   - **工程逻辑**：如果这个搜索跑了 10 秒还没出结果，用户关掉网页了，这个 `ctx` 会发出一个 **Cancellation Signal**（取消信号），告诉程序：“别找了，省点 CPU 吧。” 它控制着 **Request Lifecycle**（请求生命周期）。
 - `**req SearchRequest`**：这是 **Payload**（有效负载），也就是用户传进来的搜索关键词。
@@ -131,11 +122,11 @@ service.Search(ctx, req)      // 就像给 service 发送了一条指令
 
 我们可以把这行代码想象成一台**自动售货机**：
 
-- `***SearchService` (Receiver)**：这就是那台**具体的售货机**本体（而不是它的照片）。
-- `**Search` (Method)**：售货机上的一个按钮——“搜索”。
-- `**req SearchRequest` (Input)**：你塞进去的**硬币和选择编号**。
-- `**ctx` (Context)**：**投币限时**。如果你 1 分钟没操作，它就会自动退币取消任务。
-- `**(SearchResponse, error)` (Return)**：机器吐出来的**可乐（结果）**，或者**红灯报警（错误）**。
+- `***SearchService`（Receiver）**：那台**具体的售货机**本体（而不是它的照片）。
+- `**Search`（Method）**：售货机上的一个按钮——“搜索”。
+- `**req SearchRequest`（Input）**：你塞进去的**硬币和选择编号**。
+- `**ctx`（Context）**：**投币限时**。如果你 1 分钟没操作，它就会自动退币取消任务。
+- `**(SearchResponse, error)`（Return）**：机器吐出来的**可乐（结果）**，或者**红灯报警（错误）**。
 
 ### 总结术语表 (Engineering Reference)
 

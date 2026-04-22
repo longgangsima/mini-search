@@ -11,9 +11,9 @@
 
 - **Error 返回值模式**：为什么 Go 用 `(result, error)`，而不是 `try/catch`  
 - **自定义 error 类型**：实现 `Error() string`  
-- **`defer` 的本质**：在函数返回前按 **LIFO** 执行延迟调用（像压栈）  
-- **`defer` 常见用法**：关资源、`Unlock`、入口/出口日志  
-- **`strconv` 转换**：`strconv.Atoi` 返回 `(int, error)`，调用方必须处理  
+- `**defer` 的本质**：在函数返回前按 **LIFO** 执行延迟调用（像压栈）  
+- `**defer` 常见用法**：关资源、`Unlock`、入口/出口日志  
+- `**strconv` 转换**：`strconv.Atoi` 返回 `(int, error)`，调用方必须处理
 
 资源：Go by Example — Errors, Panic, Defer；需要时查 `pkg.go.dev/strconv`。
 
@@ -47,7 +47,7 @@
 - 调 `svc.Search`；若 `errors.As(err, &verr)` 且为 `*service.ValidationError` → **400** + JSON `{"error":"..."}`  
 - 其它错误 → **500** + JSON（不要泄露内部栈给客户端）  
 - 抽 `writeJSONError(w, code, msg)`，统一 `Content-Type: application/json`  
-- 在 `ServeHTTP` 开头 `log` + **`defer log`**（练习 `defer`）
+- 在 `ServeHTTP` 开头 `log` + `**defer log`**（练习 `defer`）
 
 ### Step 4：手动验收（约 10 min）
 
@@ -85,9 +85,9 @@ curl -s "http://127.0.0.1:8080/search?q=milk&page=-1"
 ## 常见坑
 
 - 自定义 `Error()` 用 **pointer receiver**，否则 `errors.As` 可能对不上类型  
-- `defer` 的参数在 **`defer` 语句执行时**求值，不是函数返回时  
+- `defer` 的参数在 `**defer` 语句执行时**求值，不是函数返回时  
 - `err == nil` 判断顺序：先处理无错误路径  
-- `strconv.Atoi`：非法字符串时返回 `(0, err)`；若你选择忽略 `err`，要在注释里说明设计取舍  
+- `strconv.Atoi`：非法字符串时返回 `(0, err)`；若你选择忽略 `err`，要在注释里说明设计取舍
 
 ---
 
@@ -97,7 +97,7 @@ curl -s "http://127.0.0.1:8080/search?q=milk&page=-1"
 - 负 `page` → **400** + JSON error  
 - 正常查询 → **200** + 带 `store` 的 mock 结果  
 - `handler` 里能看到 **start / done** 两条日志（`defer`）  
-- `go build ./...` 通过  
+- `go build ./...` 通过
 
 ---
 

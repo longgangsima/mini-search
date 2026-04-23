@@ -115,8 +115,7 @@ Day 0 环境准备以 **总览 docx** 里的 Day 0 为准；本仓库另有 `doc
 | -------------------------------------- | ------------------------------------------------------------------------------ |
 | `docs/handbook-v2/README.md`           | **本文件**：v23 骨架索引（做法 B）                                                         |
 | `docs/05-day0.md`、`docs/10-week1.md` 等 | **旧版**：与《Go 3周…20 天》docx 对齐；若你主跟 **v23**，以本目录 + Day-by-Day docx 为准，旧周计划可作对照或忽略 |
-| `docs/worklog/`（本地，gitignore）     | 滚动交接：`HISTORY.local.md` / `CURRENT.local.md` / `CONTEXT.local.md`，不进入仓库 |
-| `docs/templates/worklog/`            | 交接用法说明 + 空白模板（日/周、Kafka 核对表等），可复制到本地 `docs/worklog/` |
+| `docs/worklog/`（本地，gitignore）     | 可选：滚动交接 `CURRENT` / `HISTORY` / `CONTEXT`；**不进入仓库**，也无随仓模板目录 |
 
 
 ---

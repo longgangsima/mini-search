@@ -38,12 +38,12 @@ Expected response:
 - `docs/10-week1.md` … `docs/30-week3.md`：旧 20 天线逐周  
 - `docs/50-interview-alignment.md`：面试映射（补充）
 
-## Records Docs
+## Worklog（滚动交接 + 模板）
 
-- `docs/records/00-index.md`: records documentation index
-- `docs/records/daily-copy-template.md`: daily copy template (recommended + minimal)
-- `docs/records/weekly-review-template.md`: weekly review template
-- `docs/records/kafka-reality-checklist.md`: verify real Kafka implementation details before interviews
+- `docs/worklog/README.md`：怎么用 `CURRENT` / `HISTORY` / `CONTEXT`
+- `docs/worklog/daily-copy-template.md`：每日结构（可选，拷贝进 `HISTORY` 用）
+- `docs/worklog/weekly-review-template.md`：周复盘模板
+- `docs/worklog/kafka-reality-checklist.md`：Kafka 事实核对（面试前，约 Day 18）
 
 ## Project Structure
 
@@ -52,14 +52,11 @@ Expected response:
 - `internal/handler`: HTTP handlers
 - `internal/service`: business logic（Phase 1 Day 2 起含 `errors.go`：`ValidationError` 等）
 - `internal/client`: downstream client mocks
-- `internal/model`: request and response models
 - `test`: integration tests
 
 ## Suggested Workflow
 
 1. 打开 `docs/handbook-v2/README.md` 确认当天 **Phase / Day**，再打开 **《Go 23天 Day-by-Day 执行手册》docx** 做当天卡片。  
 2. 只完成当天的「主项目任务」；可选任务视时间。  
-3. 每天最后 10 分钟写 **Go Self-Brief**；可选 `docs/records/daily-copy-template.md` 打卡。  
+3. 每天最后 10 分钟写 **Go Self-Brief**；可选按 `docs/worklog/daily-copy-template.md` 把摘要 append 到 `docs/worklog/HISTORY.local.md`。  
 4. 验证通过后再 commit（`go test`、`curl`、或手册当日「完成标志」）。
-
-# mini-search

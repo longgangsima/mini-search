@@ -25,6 +25,6 @@
 2. **课表（dayN）** 里优先放「当天步骤与验收」；超长原理挪到 `topic-*.md` 或 `questions.md`。  
 3. **模块路径** 以仓库根目录 `go.mod` 的 `module ...` 为准；文档里出现旧路径时以 `go.mod` 为真源。
 
-## Records 打卡
+## Worklog 打卡
 
-每日一行/一篇见 `docs/records/`（例如 `day-01-log.md`），链回本目录对应长文即可。
+每日收工把会话摘要 append 到 **`docs/worklog/HISTORY.local.md`**；当前状态写 **`docs/worklog/CURRENT.local.md`**。模板见 **`docs/worklog/README.md`**。课表长文仍在本文 `day1.md` / `day2.md` 等。

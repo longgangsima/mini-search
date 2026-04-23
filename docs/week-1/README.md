@@ -27,4 +27,4 @@
 
 ## Worklog 打卡
 
-每日收工把会话摘要 append 到 **`docs/worklog/HISTORY.local.md`**；当前状态写 **`docs/worklog/CURRENT.local.md`**。模板见 **`docs/worklog/README.md`**。课表长文仍在本文 `day1.md` / `day2.md` 等。
+每日收工把会话摘要 append 到本地 **`docs/worklog/HISTORY.local.md`**；当前状态写 **`docs/worklog/CURRENT.local.md`**（目录在 `.gitignore`，不提交）。模板与说明见 **`docs/templates/worklog/README.md`**。课表长文仍在本文 `day1.md` / `day2.md` 等。

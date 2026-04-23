@@ -28,7 +28,7 @@
 
 - 当天 **项目任务** 有代码落库  
 - 能用命令验证：`go run`、`curl` 或 `go test` 至少一种  
-- Self-Brief 或在 `docs/worklog/HISTORY.local.md` 里有一条极简会话记录（二选一或都写）
+- Self-Brief 或在本地 `docs/worklog/HISTORY.local.md`（不提交）里有一条极简会话记录（二选一或都写）
 
 ## 编码约定（不改动 docx 日程，仅避免走偏）
 

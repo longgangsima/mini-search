@@ -40,10 +40,10 @@ Expected response:
 
 ## Worklog（滚动交接 + 模板）
 
-- `docs/worklog/README.md`：怎么用 `CURRENT` / `HISTORY` / `CONTEXT`
-- `docs/worklog/daily-copy-template.md`：每日结构（可选，拷贝进 `HISTORY` 用）
-- `docs/worklog/weekly-review-template.md`：周复盘模板
-- `docs/worklog/kafka-reality-checklist.md`：Kafka 事实核对（面试前，约 Day 18）
+- `docs/templates/worklog/README.md`：怎么用本地 `docs/worklog/`（`CURRENT` / `HISTORY` / `CONTEXT`）
+- `docs/templates/worklog/daily-copy-template.md`：每日结构（可选，拷贝进本地 `HISTORY` 用）
+- `docs/templates/worklog/weekly-review-template.md`：周复盘模板
+- `docs/templates/worklog/kafka-reality-checklist.md`：Kafka 事实核对（面试前，约 Day 18）
 
 ## Project Structure
 
@@ -58,5 +58,5 @@ Expected response:
 
 1. 打开 `docs/handbook-v2/README.md` 确认当天 **Phase / Day**，再打开 **《Go 23天 Day-by-Day 执行手册》docx** 做当天卡片。  
 2. 只完成当天的「主项目任务」；可选任务视时间。  
-3. 每天最后 10 分钟写 **Go Self-Brief**；可选按 `docs/worklog/daily-copy-template.md` 把摘要 append 到 `docs/worklog/HISTORY.local.md`。  
+3. 每天最后 10 分钟写 **Go Self-Brief**；可选按 `docs/templates/worklog/daily-copy-template.md` 把摘要 append 到本地 `docs/worklog/HISTORY.local.md`（该目录不提交）。  
 4. 验证通过后再 commit（`go test`、`curl`、或手册当日「完成标志」）。
